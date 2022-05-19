@@ -4,7 +4,7 @@ import flixel.*;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
-class WarningState extends FlxState
+class WarningState extends FlxState extends MusicBeatState
 {
 
 	public function new() 
