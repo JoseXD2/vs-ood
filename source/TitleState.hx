@@ -327,7 +327,7 @@ class TitleState extends MusicBeatState
 					}
 					else
 					{
-						FlxG.switchState(new WarningState());
+						
 					}
 				}
 				
