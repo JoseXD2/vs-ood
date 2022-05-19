@@ -42,8 +42,11 @@ class Warning2 extends MusicBeatState
 		txt.borderStyle = FlxTextBorderStyle.OUTLINE;
 		txt.screenCenter();
 		add(txt);
+	
+                #if android
+		addVirtualPad(NONE, A_B);
+		#end	
 	}
-
 	override function update(elapsed:Float)
 	{
 		if (controls.ACCEPT)
