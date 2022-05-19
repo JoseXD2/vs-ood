@@ -4,7 +4,7 @@ import flixel.*;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
-class Warning extends MusicBeatState
+class WarningState extends FlxState
 {
 
 	public function new() 
@@ -20,17 +20,17 @@ class Warning extends MusicBeatState
 		var warning:FlxSprite = new FlxSprite(0, 0);
 		warning.loadGraphic("assets/images/warning.png", false, 1280, 720);
 		add(warning);
-		
-		#if mobileC
-		addVirtualPad(NONE, A_B);
-		#end
 	}
-	override function update(elapsed:Float)
-	{
-		if (controls.ACCEPT)
-		{
-			FlxG.switchState(new MainMenuState());
+	public override function update(elapsed){
+		
+		
+		if (FlxG.keys.justPressed.ENTER){
+			FlxG.switchState(new Warning2());
+		}
+		if (FlxG.keys.justPressed.BACKSPACE){
+			FlxG.switchState(new Warning2());
 		}
 		super.update(elapsed);
 	}
+	
 }
