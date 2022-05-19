@@ -323,7 +323,7 @@ class TitleState extends MusicBeatState
 					{
 						trace('outdated lmao! ' + data.trim() + ' != ' + MainMenuState.kadeEngineVer);
 						OutdatedSubState.needVer = data;
-						FlxG.switchState(new WarningState());
+						
 					}
 					else
 					{
@@ -333,7 +333,7 @@ class TitleState extends MusicBeatState
 				
 				http.onError = function (error) {
 					trace('error: $error');
-					FlxG.switchState(new WarningState()); // fail but we go anyway
+					
 				}
 				
 				http.request();
