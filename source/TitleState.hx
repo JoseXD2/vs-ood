@@ -23,9 +23,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-#if newgrounds 
 import io.newgrounds.NG;
-#end
 import lime.app.Application;
 import openfl.Assets;
 
@@ -55,18 +53,14 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		#if android
-		FlxG.android.preventDefaultKeys = [BACK];
-		#end
-			
 		#if polymod
-	//	polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
+		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 		
-		/*#if sys
+		#if sys
 		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
 			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
-		#end*/
+		#end
 
 		@:privateAccess
 		{
@@ -290,7 +284,7 @@ class TitleState extends MusicBeatState
 		#end
 
 		if (pressedEnter && !transitioning && skippedIntro)
-		{       #if newgrounds
+		{
 			#if !switch
 			NGio.unlockMedal(60960);
 
@@ -298,7 +292,7 @@ class TitleState extends MusicBeatState
 			if (Date.now().getDay() == 5)
 				NGio.unlockMedal(61034);
 			#end
-                        #end
+
 			if (FlxG.save.data.flashing)
 				titleText.animation.play('press');
 
@@ -323,17 +317,17 @@ class TitleState extends MusicBeatState
 					{
 						trace('outdated lmao! ' + data.trim() + ' != ' + MainMenuState.kadeEngineVer);
 						OutdatedSubState.needVer = data;
-						
+						FlxG.switchState(new WarningState());
 					}
 					else
 					{
-						
+						FlxG.switchState(new WarningState());
 					}
 				}
 				
 				http.onError = function (error) {
 					trace('error: $error');
-					
+					FlxG.switchState(new WarningState()); // fail but we go anyway
 				}
 				
 				http.request();
