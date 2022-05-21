@@ -3889,14 +3889,21 @@ class PlayState extends MusicBeatState
 						});
 
 						for (note in dumbNotes)
-						{
+						/* {
 							FlxG.log.add("killing dumb ass note at " + note.strumTime);
 							note.kill();
 							notes.remove(note, true);
 							note.destroy();
-						}
-			
-						possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+						}*/
+			possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+				
+						var dontCheck = false;
+
+					for (i in 0...pressArray.length)
+					{
+						if (pressArray[i] && !directionList.contains(i))
+							dontCheck = true;
+					}
 						if (perfectMode)
 							goodNoteHit(possibleNotes[0]);
 						else if (possibleNotes.length > 0)
